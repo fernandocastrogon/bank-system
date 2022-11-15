@@ -21,6 +21,10 @@ public abstract class Conta{
 
     public abstract boolean deposita(double valor);
 
+    public boolean transfere(double valor, Conta destino){
+        destino.deposita(valor);
+        return true;
+    }
 
     public void setAgencia(int agencia) {
         this.agencia = agencia;
