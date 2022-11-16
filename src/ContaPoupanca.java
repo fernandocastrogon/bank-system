@@ -1,4 +1,4 @@
-public class ContaPoupanca extends Conta{
+public class ContaPoupanca extends Conta implements Rendimentos{
 
     ContaPoupanca(Cliente cliente, int numero, int agencia){
         super(cliente, numero, agencia);
@@ -24,5 +24,11 @@ public class ContaPoupanca extends Conta{
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    //A taxa de rendimento para a Conta Poupança é de 1% ao mes
+    public void atualizar(Double taxaRendimento) {
+        saldo += saldo * (taxaRendimento / 100);
     }
 }
