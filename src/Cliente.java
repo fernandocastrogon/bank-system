@@ -6,9 +6,15 @@ public class Cliente {
 
     Cliente(String nome, String email, String endereco){
 
-        this.nome = nome;
-        this.email = email;
-        this.endereco = endereco;
+        setNome(nome);
+        setEmail(email);
+        setEndereco(endereco);
+
+    }
+
+    public String[] getDadosCadastrais(){
+
+        return new String[]{getNome(), getEmail(), getEndereco()};
 
     }
 
