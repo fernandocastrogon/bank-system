@@ -8,7 +8,7 @@ public class ContaPoupanca extends Conta implements Rendimentos{
     @Override
     public boolean sacar(double valor) {
 
-        if (super.saldo > 0) {
+        if (super.saldo > valor) {
             super.saldo -= valor;
             return true;
         } else {
@@ -29,6 +29,8 @@ public class ContaPoupanca extends Conta implements Rendimentos{
     @Override
     //A taxa de rendimento para a Conta Poupança é de 1% ao mes
     public void atualizar(Double taxaRendimento) {
-        saldo += saldo * (taxaRendimento / 100);
+
+        super.saldo += super.saldo * (taxaRendimento / 100);
+
     }
 }

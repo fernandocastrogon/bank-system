@@ -1,34 +1,38 @@
 public abstract class Conta{
 
+    private Cliente cliente;
     private int numero;
     private int agencia;
-    public double saldo;
+    protected double saldo;
 
 
 
     Conta(Cliente cliente, int numero, int agencia){
         this.numero = numero;
         this.agencia = agencia;
-        setCliente(cliente);
+        this.cliente = cliente;
     }
 
     public void setCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
+
+    public Cliente getCliente(){
+        return cliente;
+    }
+
+
+    abstract boolean sacar(double valor);
+
+    abstract boolean depositar(double valor);
+
+    public boolean transferir(double valor, Conta destino){
+        if (sacar(valor)) return destino.depositar(valor);
+        return false;
 
     }
 
 
-    public abstract boolean saca(double valor);
-
-    public abstract boolean deposita(double valor);
-
-    public boolean transfere(double valor, Conta destino){
-        destino.deposita(valor);
-        return true;
-    }
-
-    public void setAgencia(int agencia) {
-        this.agencia = agencia;
-    }
 
     public int getNumero() {
         return numero;

@@ -1,43 +1,47 @@
-import java.util.concurrent.ExecutionException;
-
-public class ContaCorrente extends Conta{
+public class ContaCorrente extends Conta {
 
     private double limite;
     private double taxa;
 
-    ContaCorrente(Cliente cliente, int numero, int agencia, double taxa, double limite){
+    ContaCorrente(Cliente cliente, int numero, int agencia, double taxa, double limite) {
         super(cliente, numero, agencia);
-        this.taxa = taxa;
+        setTaxa(taxa);
+        setLimite(limite);
 
     }
 
 
     @Override
-    public boolean saca(double valor) {
+    public boolean transferir(double valor, Conta destino) {
+        return super.transferir(valor, destino);
+    }
+
+    @Override
+    public boolean sacar(double valor) {
+
+        if (valor < getLimite() && super.saldo > valor) {
+            super.saldo -= valor + getTaxa();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean depositar(double valor) {
 
         try {
-            super.saldo -= valor + this.taxa;
-        }
-        catch (Exception ex){
+            super.saldo += (valor - getTaxa());
+            return true;
+        } catch (Exception ex) {
             return false;
         }
-        return true;
 
     }
 
     @Override
-    public boolean deposita(double valor) {
-
-        if (valor < getLimite()) {
-            try {
-                super.saldo += valor;
-            } catch (Exception ex) {
-                return false;
-            }
-            return true;
-        }else {
-            return false;
-        }
+    public double getSaldo() {
+        return super.getSaldo();
     }
 
     public double getLimite() {
