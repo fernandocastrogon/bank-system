@@ -62,57 +62,52 @@ public class MenuConta {
             try {
                 opcao = ler.nextInt();
                 switch (opcao) {
-                    case 1:
+                    case 1 -> {
                         clearConsole();
                         System.out.println("Digite o valor que deseja transferir para a conta do Fabricio");
                         cc1.transferir(ler.nextDouble(), cc2);
-                        break;
-
-                    case 2:
+                    }
+                    case 2 -> {
                         clearConsole();
                         System.out.println("Digite o valor que quer depositar");
                         cc1.depositar(ler.nextDouble());
                         System.out.println("Valor depositado com sucesso");
-                        break;
-
-                    case 3:
+                    }
+                    case 3 -> {
                         clearConsole();
                         System.out.println("Digite o valor que quer sacar");
-                        if(cc1.sacar(ler.nextDouble())) {
+                        if (cc1.sacar(ler.nextDouble())) {
                             System.out.println("Valor sacado com sucesso!");
-                        }else {
+                        } else {
                             System.out.println("Valor insuficiente ou acima do limite diário");
-                            break;
                         }
-                        break;
-                    case 4:
+                    }
+                    case 4 -> {
                         String[] lista = fernando.getDadosCadastrais();
-                        for (int i = 0; i < lista.length; i++) {
-                            System.out.println(lista[i]);
+                        for (String s : lista) {
+                            System.out.println(s);
                         }
-                        break;
-                    case 5:
+                    }
+                    case 5 -> {
                         clearConsole();
                         System.out.println("Seu saldo da Conta Poupança é " + cp1.getSaldo());
-                        break;
-                    case 6:
+                    }
+                    case 6 -> {
                         clearConsole();
                         System.out.println("Digite o valor que deseja depositar na sua Conta Poupança: ");
                         cp1.depositar(ler.nextDouble());
                         System.out.println("Valor depositado com sucesso");
-                        break;
-                    case 7:
+                    }
+                    case 7 -> {
                         clearConsole();
                         System.out.println("Digite o valor que deseja sacar da sua Conta Poupança: ");
-                        if(cp1.sacar(ler.nextDouble())){
+                        if (cp1.sacar(ler.nextDouble())) {
                             System.out.println("Valor sacado com sucesso!");
-                        }else {
+                        } else {
                             System.out.println("Saldo insuficiente");
-                            break;
                         }
-                        break;
-                    case 8:
-                        exit(0);
+                    }
+                    case 8 -> exit(0);
                 }
             } catch (InputMismatchException ex) {
                 clearConsole();
